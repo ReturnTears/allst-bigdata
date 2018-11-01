@@ -10,5 +10,6 @@ import javafx.stage.Stage
 object App extends Application {
   println( "Hello World!" )
 
+//  val sc = new SparkContext()
   override def start(primaryStage: Stage) = ???
 }
