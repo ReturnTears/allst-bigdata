@@ -55,10 +55,101 @@ scala
 ```
 
 ### Part7
+**Scala的开发工具**
 ```
-https://www.bilibili.com/video/av39126512?p=7
+IEDA(推荐)
+Eclipse
+
+默认情况下, Scala不支持Scala的开发, 需要在IDEA中安装Scala插件
+```
+
+### Part8
+**Scala快速开发入门**
+
+### Part9
+**IDEA开发Scala入门**
+```
+IDEA创建maven项目, 项目中添加上Scala的SDK包,一般在本地安装了Scala, 将安装环境配置到IDEA中就可以了
+
+```
+
+### Part10
+**Java模拟Scala运行流程机制**
+```
+
+```
+
+### Part11
+**Scala程序开发注意事项(重点)**
+```
+1 - Scala源文件以".scala"为扩展名
+2 - Scala程序的执行入口时main()函数
+3 - Scala语言严格区分大小写
+4 - Scala犯方法由一条条语句构成, 每个语句后不需要分号(Scala语言会在每行后面自动加分号), 体现了Scala的简洁性
+5 - 如果在同一行有多条语句, 除了最后一条语句不需要分号， 其他行语句需要分号
+
+```
+**Scala语言转义字符(escape char)**
+```
+1 - \t  : 一个制表符, 实现对齐的功能      println("name\tage")
+2 - \n  : 换行符                      println("name\nage")
+3 - \\  : 一个\                      println("C:\\xx")
+4 - \"  : 一个"                      println("name\"age\"")
+5 - \r  : 一个回车                    println("name\r age")
+```
+
+**Scala语言输出的三种方式**
+``` scala
+1 - 字符串通过 + 号连接 (似Java)
+2 - printf用法 (似C)  字符串通过%传值  (%s-String %d-十进制)
+3 - 字符串通过$引用 (似PHP)
+```
+
+### Part12
+**Scala源码查看关联**
+``` scala
+在使用Scala过程中, 为了搞清楚Scala底层机制, 需要查看源码:
+1 - 查看源码, 选择要查看的方法或者类, 输入ctrl + b   (将鼠标指针放到要查看的方法或类上, 输入ctrl + b)
+2 - 关联源码, 将Attach Source指定到Scala的源代码解压路径下即可
+
+```
+### Part13
+**注释(_comment_)**
+```text
+用于注释说明解释程序的文字就是注释, 注释提高了代码的可阅读性
+注释是一个程序员必须要具有的良好编码习惯，将自己的思想通过注释先整理出来，再用代码去体现
+Scala中的注释类型:
+1 - 单行注释
+2 - 多行注释
+3 - 文档注释
+    scaladoc -d 文档存放路径 类名称  (最好是直接切换到当前类的路径下)
+    scaladoc -d E:\test\doc HelloScala.scala
+
+```
+
+### part14
+**Scala规范的代码风格**
+```text
+正确的缩进和空白
+1 - 使用一次tab操作, 实现缩进，默认整体向右移动, 使用shift+tab整体左移
+2 - 使用ctrl + alt + l 格式化代码
+3 - 运算符的两边习惯性加一个空格
+4 - 一行代码最长不要超过80个字符，超过则使用换行展示，尽量保持格式优雅
 
 ```
 
 
 
+
+### 快捷键  shortcut key
+```text
+格式化文档:
+1 - ctrl + alt + l  格式化代码
+
+```
+
+
+
+
+
+https://www.bilibili.com/video/av39126512?p=
