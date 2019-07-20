@@ -2,8 +2,8 @@ package com.allst.scala.guig.demo
 
 /**
   * print案例
-  * @Auther JUNN
-  * @Date 2019-07-20 上午 09:36
+  * @auther JUNN
+  * @since 2019-07-20 上午 09:36
   */
 object PrintDemo {
   def main(args: Array[String]): Unit = {
