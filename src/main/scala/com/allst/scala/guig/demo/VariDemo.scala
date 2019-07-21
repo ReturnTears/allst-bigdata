@@ -13,8 +13,10 @@ object VariDemo {
     cat.age = 20
     println(s"${cat.name} , ${cat.age}")
 
-    println(sayHello)
+    // 方法的调用带不带小括号都一样
+    maVal
 
+    println(sayHello)
 
   }
 
@@ -22,6 +24,11 @@ object VariDemo {
   // 即当我们Nothing做返回值, 就是明确说明该方法没有正常返回值
   def sayHello: Nothing = {
     throw new Exception("抛出异常")
+  }
+
+  //
+  def maVal= {
+    println(Int.MaxValue)
   }
 }
 
