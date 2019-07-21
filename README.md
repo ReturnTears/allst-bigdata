@@ -172,7 +172,7 @@ val | var 变量名 [:变量类型] = 变量值
 ```
 1 - Scala与Java有着相同的数据类型,再Scala中数据类型都是对象, 也就是说Scala没有Java中的原生类型
 2 - Scala数据类型分为两大类AnyVal(值类型) 和 AnyRef(引用类型), 注意: 不管是AnyVal还是AnyRef都是对象
-![Image](https://github.com/ReturnTears/allst-scala/static/asserts/img/Scala_data_type.png)
+![Image](https://github.com/ReturnTears/allst-scala/blob/master/src/main/sources/static/asserts/img/Scala_data_type.png)
 3 - 相对于Java的类型
 ```
 
