@@ -172,15 +172,39 @@ val | var 变量名 [:变量类型] = 变量值
 ```
 1 - Scala与Java有着相同的数据类型,再Scala中数据类型都是对象, 也就是说Scala没有Java中的原生类型
 2 - Scala数据类型分为两大类AnyVal(值类型) 和 AnyRef(引用类型), 注意: 不管是AnyVal还是AnyRef都是对象
-
-3 - 相对于Java的类型
+3 - 相对于Java的类型系统, Scala要更复杂, 也正是这些复杂多变的类型系统才让面向对象编程和函数式编程完美的融合在一起
 ```
 ![Image](https://github.com/ReturnTears/allst-scala/blob/master/cimg/Scala_data_type.png)
+```text
+对上图的解释如下:
+1 - 在Scala中有一个根类型, Any是所有类型的父类
+2 - Scala中一切皆为对象,分为两大类型AnyVal(值类型),AnyRef(引用类型), 它们都是Any的子类型
+3 - Null类型是Scala的特别类型,他只是一个值null, 它是bottom class, 是所有AnyRef类型的子类型
+4 - Nothing类型也是bottom class, 它是所有类型的子类型, 在开发中可以将Nothing类型的值返回给任意变量或者函数, 在抛出异常时使用较多
+5 - 在Scala中仍然遵守低精度向高精度的值自动转换(implicit conversion)隐式转换
 
-
+```
 
 ### Part18
-
+**Scala数据类型列表**
+```
+数据类型            |           描述
+----            |           ----
+Byte            |           8位有符号补码整数。整数区间为-128 ~ 127
+Short           |           16位有符号补码整数。整数区间为-32768 ~ 32767
+Int             |           32位有符号补码整数。整数区间为-2147483648 ~ 2147483647
+Long            |           64位有符号补码整数。整数区间为-9223372036864775808 ~ 9223372036854775807
+Float           |           32位，IEEE754标准的单精度浮点数
+Double          |           64位，IEEE754标准的双精度浮点数
+Char            |           16位无符号Unicode，区间值为U+0000到U+FFFF
+String          |           无符序列
+Boolean         |           true或false
+Unit            |           表示无值，和其他语言中void等同。用作不返回任何结果的方法的结果类型，Unit是一个实例值，写成()
+Null            |           null
+Nothing         |           Nothing类型在Scala的类层级的最低端，它是任何其他类型的子类型
+Any             |           Any是所有其他类的超类
+AnyRef          |           AnyRef类是Scala里所有引用类reference class的基类
+```
 
 ### 快捷键  shortcut key
 ```text
