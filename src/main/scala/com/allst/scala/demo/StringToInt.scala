@@ -23,6 +23,26 @@ object StringToInt {
     def _2Int(radix: Int) = Integer.parseInt(s, radix)
   }
 
+  /**
+    * 期望声明方法会抛出异常
+    * @param s
+    *          待转换值
+    * @throws java.lang.NumberFormatException
+    *                                         异常类型
+    * @return
+    *         转换结果
+    */
+  @throws(classOf[NumberFormatException])
+  def _toInt(s: String) = s.toInt
+
+  def _toInt2(s: String): Option[Int] = {
+    try {
+      Some(s.toInt)
+    } catch {
+      case e: NumberFormatException => None
+    }
+  }
+
   def main(args: Array[String]): Unit = {
     val a = new string2int("10")._2Int(2)
     println(a)
