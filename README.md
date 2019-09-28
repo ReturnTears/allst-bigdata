@@ -523,6 +523,19 @@ R = 从右到左
     until 前闭合后开区间的范围,
     for (i <- start until end) {}
     
+    while(condition){循环体}
+    
+    do {循环体} while(condition)
+    
+    多层循环, 将一个循环放在另一个循环体内
+    
+    while循环的中断: Scala内置控制结构特地去掉了break和continue, 是为了更好的适应函数化编程, 推荐使用函数式编程
+    break() 函数
+    breakable() 函数是一个高阶函数, 可以接收函数的函数就是高阶函数
+    也可以使用if-else或者循环守卫实现continue的效果
+    
+    函数式编程的基础
+    
     
 ```
 
