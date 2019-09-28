@@ -48,6 +48,7 @@ object Algorithm {
     } else {
       (Funcs2(n + 1) + 1) * 2
     }
-
   }
+
+
 }

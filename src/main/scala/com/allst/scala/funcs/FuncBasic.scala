@@ -25,6 +25,9 @@ object FuncBasic {
     val a = 22
     val b = 11
     println(getSum(a, b, '-'))
+
+    lazy val res = lazyLoad(a, b)
+    println("res = " + res)
   }
 
   // 定义函数
@@ -36,6 +39,22 @@ object FuncBasic {
     } else {
       null
     }
+  }
+
+  // scala函数支持可变参数
+  def argLen(args: Int*): Int = {
+    args.length
+  }
+
+  // 支持1到多个参数
+  def argMore(n1: Int, args: Int*): Int = {
+    n1 + args.length
+  }
+
+  // 延迟加载
+  def lazyLoad(a: Int, b: Int): Int = {
+    println("进入到lazyLoad方法")
+    a + b
   }
 }
 // Method类, 其中定义方法
