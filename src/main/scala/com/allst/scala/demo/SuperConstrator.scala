@@ -21,36 +21,37 @@ object SuperConstrator {
 // 父类
 class Personals1 {
   var name = "Super"
-  println("class personal...")
+  println("class1 personal...")
 }
 // 子类
 class employee1() extends Personals1() {
-  println("class employee")
+  println("class1 employee")
   // 辅助构造器
   def this(name: String) {
     // 必须调用主构造器
     this
     this.name = name
-    println("employee 辅助构造器")
+    println("employee1 辅助构造器")
   }
 }
 
 // 父类2
 class Personals2(namea: String) {
   var name = namea
-  println("class personal...")
+  println("class2 personal...")
   def this() {
     this("default name")
+    println("default name")
   }
 }
 // 子类2
 class employee2() extends Personals2() {
-  println("class employee")
+  println("class2 employee")
   // 辅助构造器
   def this(name: String) {
     // 必须调用主构造器
     this
     this.name = name
-    println("employee 辅助构造器")
+    println("employee2 辅助构造器")
   }
 }
