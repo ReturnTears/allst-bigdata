@@ -910,7 +910,30 @@ Scala接口
     Scala语言中, 采用特质trait(特征)来代替接口的概念, 也就是说, 多个类具有相同的特质(特征)时,
     就可以将这个特质独立出来, 采用关键字trait声明
     trait等价于Java中interface+abstract class
-
+    
+    trait的声明
+    trait 特质名称 {
+        trait 体
+    }
+    
+    trait命名一般首字母大写
+    Cloneable, Serializable
+    object T1 extends Serializable {
+    
+    }
+    Serializable就是Scala的一个特质.
+    在Scala中,Java中的接口可以当作特质使用
+    
+    scala中trait的使用
+    一个类具有某种特质(特征), 也就意味着这个类满足了这个特质的所有要素,所以在使用时,也采用了extends关键字
+    如果有多个特质或存在父类, 那么需要采用with关键字连接
+    没有父类
+    class 类名 extends 特质1 with 特质2 with 特质3...
+    有父类
+    class 类名 extends 父类 with 特质1 with 特质2 with 特质3
+   
+   可以把特质看作是对继承的一种补充
+   Scala的继承是单继承,也就是一个类只能有一个父类, Scala引入了特质一是可以替代Java的接口, 二是对单继承的补充
    
    
    
