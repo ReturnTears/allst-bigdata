@@ -58,7 +58,8 @@ trait Kays1 extends Data1 {
     */
   override def insert(id: Int): Unit = {
     println("in kays")
-    super.insert(id)
+    super.insert(id) // 如果想直接调用父类中的insert方法, 如意如下
+    //super[Data1].insert(id)
   }
 }
 
