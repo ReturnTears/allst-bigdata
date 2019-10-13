@@ -58,6 +58,11 @@ class ScalaOuter2Class {
       // myOuter相当于外部类的实例
       println("name : " + myOuter.name + ", sal : " + myOuter.sal)
     }
+    // 下面的语法称为类型投影, 作用是屏蔽外部对象对内部类对象的影响
+    def test(inner: ScalaOuter2Class#ScalaInner2Class): Unit = {
+      println(inner)
+      System.out.println(inner)
+    }
   }
   var name = "this is outer property"
   private var sal = 678.90
