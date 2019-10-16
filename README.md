@@ -1092,11 +1092,52 @@ Scala中的嵌套类
 ```
 
 ### Scala数据结构 - 集合
+**集合**
 ```text
+数据结构的应用
+Scala集合基本介绍:
+1,Scala同时支持不可变集合和可变集合, 不可变集合可以安全的并发访问
+2,两个主要的包:
+    不可变集合:scala.collection.immutable
+    可变集合:scala.collection.mutable
+3,Scala默认采用不可变集合, 对于几乎所有的集合类,Scala都同时提供了可变和不可变的版本
+4,Scala的集合有三大类, 序列Seq, 集合Set, 映射Map, 所有的集合都扩展自Iterable特质, 
+  在Scala中集合有可变和不可变两种类型
 
-集合
+不可变集合: Scala不可变集合,就是这个集合本身不能动态变化,(类似Java的数组, 是不可以动态增长的)
+可变集合:   可变集合就是这个集合本身可以动态变化的, 比如: ArrayList是可以动态增长的
 
 
+```
+**集合结构图**
+![Image](https://github.com/ReturnTears/allst-scala/blob/master/cimg/Scala_data_collect1.png)
+![Image](https://github.com/ReturnTears/allst-scala/blob/master/cimg/Scala_data_collect2.png)
+
+**数组**
+```text
+定长数组(声明泛型)
+定义方式:
+1,数组等同于Java中的数组, 中括号的类型就是数组的类型
+    val arr1 = new Array[Int](10)
+    arr1(1) = 7
+2,使用apply方法创建数组
+    // 这里使用的object Array的apply方法
+    // 直接初始化数组, 这时候编译器根据你给出的数据类型推断除泛型为Any
+    val arr = Array(1, 2, "Hi")
+    // 遍历方式1
+    for (i <- arr) {
+         println(i)
+    }
+    // 遍历方式2
+    for (i <- 0 to arr.length - 1) {
+     
+    }
+    // 遍历方式3
+    for (i <- o until arr.length) {
+        
+    }
+
+变长数组(声明泛型)
 
 
 ```
