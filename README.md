@@ -1110,8 +1110,8 @@ Scala集合基本介绍:
 
 ```
 **集合结构图**
-![Image](https://github.com/ReturnTears/allst-scala/blob/master/cimg/Scala_data_collect1.png)
-![Image](https://github.com/ReturnTears/allst-scala/blob/master/cimg/Scala_data_collect2.png)
+![Image](https://github.com/ReturnTears/allst-scala/blob/master/cimg/scala_data_collect1.png)
+![Image](https://github.com/ReturnTears/allst-scala/blob/master/cimg/scala_data_collect2.png)
 
 **数组**
 ```text
