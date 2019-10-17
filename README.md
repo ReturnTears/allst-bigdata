@@ -999,6 +999,19 @@ Scala接口
    特质自身类型
    自身类型: 主要是为了解决特质的循环依赖问题, 同时可以确保特质在不扩展某个类的情况下, 依然可以做到限制混入该特质的类的类型
    
+补充特质:
+   当一个类继承了一个trait, 那么该类的实例就可以传递给这个trait
+   trait myTrait {}
+   
+   class yourTrait extends myTrait {}
+   
+   object Hersy {
+      def test(m: myTrait): Unit = { println("ok) }
+   }
+   val a = new yourTrait
+   Hersy.test(a)
+   
+   
 Scala中的嵌套类
     在Scala中, 你几乎可以在任何语法结构中内嵌任何语法结构, 如果类中可以再定义一个类,
     这样的类就是嵌套类, 其他的语法结构也是一样, 嵌套类类似于Java中的内部类
@@ -1147,6 +1160,26 @@ Scala集合基本介绍:
     arr(0)
     // 修改
     arr(0) = 9
+  分析小结:
+    1),ArrayBuffer是变长数组, 类似Java的ArrayList
+    2),val arr = ArrayBuffer[Int]()也是使用的apply方法构建对象
+    3),def append(elems: A*) {appendAll(elems)}接收的是可变参数
+    4),每append一次, arr在底层会重新分配空间, 进行扩容, arr的内存地址会发生变化,也就成为新的ArrayBuffer
+
+定长数组与变长数组的转换
+arr.toBuffer    // 定长数组转可变数组, 返回的结果才是一个可变数组, arr本身没有变化
+arr.toArray     // 可变数组转定长数组, 返回的结果才是一个定长数组, arr本身没有变化
+
+多维数组
+定义和使用:
+    val arr = Array.ofDim[Any](3, 4)
+    二维数组中有三个一维数组, 每个一维数组有四个元素
+    
+    赋值
+    arr(1)(1) = 11.11
+        
+Scala数组与Java的List互转
+Scala数组转Java的List
 
 ```
 
