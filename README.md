@@ -1205,6 +1205,35 @@ Tuple
      
 ```
 
+**Scala中的List**
+```text
+基本介绍:
+    Scala中的List和Java List不一样, 在Java中List是一个接口, 真正存放数据是ArrayList,
+    而Scala的list可以直接存放数据,就是一个object, 默认情况下Scala的list是不可变的, List属于序列Seq
+    val list = scala.collection.immutable.List
+    object List extends SeqFactory[List]
+    // 创建时直接分配元素
+    val list = List(1,2,3)
+    val list1 = Nil //空列表
+
+小结:
+    1),List默认为不可变的集合
+    2),List在Scala包对象声明的, 因此不需要引入其他包也可以使用
+    3),val List = scala.collection.immutable.List
+    4),List中可以存放任何数据类型, List[Any]
+    5),Nil对象声明空列表
+
+    List列表的元素追加
+    向列表增加元素, 会返回新的列表/集合对象. 注意: Scala中List元素的追加形式非常独特和Java不一样
+    var list = List(1,2,3,"abc")
+    :+ 运算符表示在列表的最后增加数据, 巧记: :+ 冒号的左侧为列表加号的右侧为追加的数据
+    val list2 = list :+ 4
+    
+    
+    
+    
+```
+
 ### 快捷键  shortcut key
 ```text
 格式化文档:
