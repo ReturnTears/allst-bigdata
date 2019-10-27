@@ -1227,11 +1227,50 @@ Tuple
     向列表增加元素, 会返回新的列表/集合对象. 注意: Scala中List元素的追加形式非常独特和Java不一样
     var list = List(1,2,3,"abc")
     :+ 运算符表示在列表的最后增加数据, 巧记: :+ 冒号的左侧为列表加号的右侧为追加的数据
+    +: 运算符表示在列表的前面追加数据, 有冒号:的一侧是列表,+的一侧是待追加的元素
     val list2 = list :+ 4
+    :: 双冒号操作符也表示追加元素,运算规则是:从右向左依次执行
+    val list = 1 :: 2 :: 3 :: list2 :: Nil
+    ::: 三冒号操作符是将集合中的每一个元素加入到空集合中去, 三冒号操作符的两边都要为集合
+    val list = 1 :: 2 :: 3 :: list2 ::: Nil
     
     
+    List列表的元素获取,list是序列, 可以按照序列的方式获取
+    list(x)
     
-    
+```
+**Scala中的ListBuffer**
+```text
+ListBuffer是可变的List集合
+```
+
+**Scala的队列Queue**
+```text
+队列是一个有序列表, 在底层可以用数组或链表来实现
+遵循先入先出原则
+val q0 = new mutable.Queue[Int]
+q0 += 10
+
+q0 ++= List(20, 30, 40)
+
+q0 += List(50, 60)  // 需要定义的泛型为Any才行
+
+按照队列的顺序删除元素(队列先进先出)
+
+
+```
+
+**Scala中的Map**
+```text
+Java回顾:
+HashMap是一个散列表(数组+链表), 他存储的内容是键值对key-value映射, Java中的HashMap是无序的,key是无序的
+
+Scala中的Map和Java类似, 也是一个散列表, 它的存储内容也是键值对, key-value映射, Scala中的不可变的Map是有序的, 可变的Map是无序的
+scala.collection.mutable.Map 无序可变Map
+scala.collection.immutable.Map 有序不可变的Map
+key-value类型支持Any, 在Map的底层每对key-value是Tuple2
+
+
 ```
 
 ### 快捷键  shortcut key
