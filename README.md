@@ -1270,8 +1270,48 @@ scala.collection.mutable.Map 无序可变Map
 scala.collection.immutable.Map 有序不可变的Map
 key-value类型支持Any, 在Map的底层每对key-value是Tuple2
 
+Map取值
+1),通过key取值, 在取值前使用contains方法检查是否存在key
+2),map.get(key).get 如果key存在, map.get(key)就会返回Some(值), 然后get取出值, 不存在就返回None
+3),getOrElse(key, 默认值)
+
+Map修改,添加和删除
+map(key) = value 存在key就更新, 没有就添加
+map += (k1 -> v1) 添加单个元素, 存在k1更新, 不存在添加
+map -= (k1, k2) 删除多个元素k1, k2
+
+Map的遍历
+查看MapDemo.scala
+
 
 ```
+**Scala中的Set**
+```
+Set简称集, 集是不重复元素的结合, 集不保留顺序, 默认是以哈希集实现
+Scala中set默认是不可变的集合, 想要使用可变集合, 需要引入scala.collection.mutable.Set包
+
+创建
+val set0 = Set(k0, k1, k2, ... ) 不可变
+val set = mutable.Set(k0, k1, k2, ... ) 可变
+
+可变集合添加, 如果添加的对象存在,则不会重复添加,也不会报错
+set.add(kn)
+set += kn
+set .+= (kn)
+
+可变集合删除, 如果删除的对象不存在, 则不生效, 也不报错
+
+set -= k1 操作符的形式删除
+set.remove("k1") 方法的形式删除
+
+set集合的遍历操作
+val set = mutable.Set(1, 2, 3, 4, "5", "abc")
+for (x <- set) {
+    println(x)
+}
+
+```
+
 
 ### 快捷键  shortcut key
 ```text

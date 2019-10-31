@@ -27,5 +27,29 @@ object MapDemo {
     // 对偶元组: 即创建包含键值对的二元组, 和map1方式等价, 只是形式上不同而已, 对偶元组就是只含两个数据的元组
     val map3 = mutable.Map(("hello", "world"), ("Hi", "Scala"), ("Nums", 10))
     println(map3)
+
+    // getOrElse
+    println(map3.getOrElse("key", "default"))
+
+    // map新增和修改
+    map3("Name") = "YiYa"
+    println(map3)
+
+    // 添加单个元素
+    map3 += ("age" -> 4)
+    println(map3)
+
+    // 删除单个元素
+    map3 -= ("hello")
+    println(map3)
+
+    // Map的遍历 - 遍历key
+    for (k <- map3.keys) println(k)
+    // Map的遍历 - 遍历value
+    for (v <- map3.values) println(v)
+    // Map的遍历 - 遍历key -value
+    for ((k, v) <- map3) println(k + " : " + v)
+    // Map的遍历 - 遍历v, 这时候v是元组的方式
+    for (v <- map3) println(v + ", key = " + v._1 + ", value = " + v._2)
   }
 }
