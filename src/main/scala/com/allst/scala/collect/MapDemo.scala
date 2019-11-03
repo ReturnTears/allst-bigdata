@@ -51,5 +51,14 @@ object MapDemo {
     for ((k, v) <- map3) println(k + " : " + v)
     // Map的遍历 - 遍历v, 这时候v是元组的方式
     for (v <- map3) println(v + ", key = " + v._1 + ", value = " + v._2)
+
+    // 案例1
+    val mapD = List("hi", "scala")
+    def upper(s: String): String = {
+      s.toUpperCase
+    }
+    val mapN = mapD.map(upper)
+    println(mapN)
+
   }
 }
