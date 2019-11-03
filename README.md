@@ -1344,6 +1344,55 @@ foldLeft和foldRight得缩写方法分别为: 常量 /: 集合 和 集合 :\ 常
 scan 扫描
 扫描即对某个集合的所有元素左fold操作, 但是会把产生的所有中间结果放置于一个集合中保存
 
+zip 拉链
+在开发中,当我们需要将两个集合进行对偶元组合并, 可用使用拉链
+注意事项:
+1),拉链的本质就是两个集合的合并操作, 合并后每个元素是一个对偶元组
+2),如果两个集合元素个数不对应, 会造成数据丢失
+3),集合不限于List, 也可以是其他集合, 比如Array
+4),如果想要取出合并后的各个对偶元组的数据, 可用遍历
+
+iterator 迭代器
+通过iterator方法从集合中获取一个迭代器, 通过while循环和for循环对集合进行遍历
+iterator的构建实际上是AbstractIterator的一个匿名子类, 该子类提供了hasNext, next方法
+
+Stream 流
+Stream是一个集合, 这个集合可用用于存放无穷多个元素, 但是这个无穷个元素并不会一次性产生出来,
+而是需要用到很大的区间, 会动态生成, 末尾元素遵循lazy规则
+
+def numsForm(n: Int): Stream[BigInt] = n#::numsForm(n + 1)
+val stream1 = numForm(1)
+注意:
+Stream集合存放的数据类型是BigInt, 
+numsForm是自定义的一个函数, 函数名是程序员指定的
+创建的集合的第一个元素是n, 后续元素生成的规则是n+1
+后续元素生成的规则是可以程序员指定的, 比如numsForm(n * 4)
+使用tail就会动态的向stream集合按规则生成新的元素
+
+view 试图
+Stream的懒加载特性也可以对其他集合应用view方法来得到类似的效果
+view方法会产生出一个总是被懒加载执行的集合
+view不会缓存数据, 每次都要重新计算
+应用场景:
+开发中如果想对集合进行map, filter, reduce, fold...操作, 但是不喜欢立即执行, 再需要结果时才执行则可以使用view来进行优化
+
+现场安全的集合
+所有线程安全的集合都是以Synchronized开头的集合
+SynchronizedBuffer
+SynchronizedMap
+SynchronizedPriorityQueue
+SynchronizedQueue
+SynchronizedSet
+SynchronizedStack
+
+并行集合
+1), Scala为了充分使用多核CPU, 提供了并行集合, 用于多核环境的并行计算
+2), 主要用到的算法有:
+    Divide and conquer: 分治算法, Scala通过splitters(分解器), combiners(组合器)等抽象层来实现,
+    主要原理是将计算工作分解很多任务, 分发给一些处理器取完成, 并将它们处理结果合并返回
+    Workstealin算法, 主要用于任务调度负载均衡, 通俗点完成自己的所有任务之后, 发现其他人还没完成的任务就会帮忙一起完成
+3),
+
 
 ```
 
