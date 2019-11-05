@@ -13,7 +13,7 @@ object TupleDemo {
     println(tuplea)
 
     println(tuplea._1)  // 访问第一个元素, 从1开始
-    println(tuplea.productElement(1)) // 访问第一个元素
+    println(tuplea.productElement(0)) // 1:访问除第一个元素外剩下元素的第一个元素, 0第一个元素
 
     // 遍历元组
     for (item <- tuplea.productIterator) {

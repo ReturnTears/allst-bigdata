@@ -1144,11 +1144,11 @@ Scala集合基本介绍:
     }
     // 遍历方式2
     for (i <- 0 to arr.length - 1) {
-     
+        println(arr(i))
     }
     // 遍历方式3
-    for (i <- o until arr.length) {
-        
+    for (i <- 0 until arr.length) {
+        println(arr(i))
     }
 
 变长数组(声明泛型)
@@ -1192,7 +1192,7 @@ Tuple
     将多个无关的数据封装为一个整体, 成为元组
     **注意**: 元组最大只能由22个元素
     最大的优点就是灵活, 对数据类型没有过多的要求
-    val tuplea = (1, 2, 3, "Hi", True)  // 对应类型Tuple4
+    val tuplea = (1, 2, 3, "Hi", true)  // 对应类型Tuple5
     为了高效的操作元组, 编译器根据元素的个数不同对应不同的元组类型, 分别对应Tuple1~Tuple22
     
     元组数据的访问
