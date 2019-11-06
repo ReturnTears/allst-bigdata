@@ -1409,6 +1409,50 @@ SynchronizedStack
 
 ```
 
+### Scala模式匹配 (重点)
+```
+Scala中模式匹配蕾仕于Java中的switch语法, 但是更加强大
+模式匹配语法中, 采用match关键字声明, 每个分支采用case关键字进行声明, 当需要匹配时, 会从第一个case分支开始, 如果匹配成功,
+ 那么执行对应的逻辑代码, 如果匹配不成功, 继续执行下一个分支进行判断.
+如果所有case都不匹配, 那么会执行case_分支, 类型Java中default语句, 不需要break语句
+
+match细节和注意事项:
+1,如果所有case都不匹配, 那么会执行case _分支, 类似Java中的default语句
+2,如果所有case都不匹配, 又没有写case _ 分支, 那么会抛出异常MatchError
+3,每个case中, 不用break语句, 自动中断case
+4,可以在match中使用其他类型, 而不仅仅时字符
+5,=>等价于Java switch的:
+6,=>后面的代码块到下一个case之间是作为一个整体执行,可以使用{}括起来,也可以不用
+
+// Java (不加break会造成穿透现象)
+int i = 1
+switch(i) {
+    case 0:
+        xxx
+        break;
+    case 1:
+        xxx
+        break;
+    default:
+        break;
+}
+
+// scala
+
+如果想要表达匹配某个范围的数据, 就需要在模式匹配中增加条件守卫即if语句
+
+模式中的变量:
+如果在case关键字后跟变量名, 那么match前表达式的值会赋给那个变量
+match是一个表达式, 因此可以有返回值, 返回值就是匹配到的代码块的最后一句代码执行的值
+
+类型匹配
+可以匹配对象的任意类型, 这样做避免了使用inInstanceOf和asInstanceOf方法
+
+
+
+
+```
+
 
 ### 快捷键  shortcut key
 ```text
