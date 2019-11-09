@@ -1369,7 +1369,7 @@ numsForm是自定义的一个函数, 函数名是程序员指定的
 后续元素生成的规则是可以程序员指定的, 比如numsForm(n * 4)
 使用tail就会动态的向stream集合按规则生成新的元素
 
-view 试图
+view 视图
 Stream的懒加载特性也可以对其他集合应用view方法来得到类似的效果
 view方法会产生出一个总是被懒加载执行的集合
 view不会缓存数据, 每次都要重新计算
@@ -1465,7 +1465,29 @@ match是一个表达式, 因此可以有返回值, 返回值就是匹配到的�
 
 匹配元组
 
+对象匹配
+什么才算是匹配呢?
+1),case中对象的unapply方法(对象抽取器)返回some集合则为匹配成功
+2),返回none集合则为匹配失败
+注意事项:
+1), 构建对象时apply会被调用, 例如: val n1 = Square(6)
+2), 当将Square(n)写在case后时[case Square(n) => xxx], 会默认调用unapply方法
+3), num会被传递给def unapply(arg: Double)的arg形参
+4), 如果返回的时Some集合, 则unhappy提取器返回的结果会返回给n这个形参
+5), case中对象的unhappy方法提取器返回Some集合则为匹配成功
+6), 返回none集合则为匹配失败
 
+案例2注意事项:
+1), 当case后面的对象提取器方法的参数为多个, 则会默认调用def unapplySeq()
+2), 如果unhappySeq返回Some, 获取其中的值, 判断得到的sequence中的元素的个数, 如果匹配上, 则执行匹配后面的逻辑
+3), 其他规则不变
+
+变量声明中的模式
+基本介绍:
+match中每一个case都可以单独提取出来,
+
+for表达式的模式
+for循环中也可以进行模式匹配
 
 
 ```
