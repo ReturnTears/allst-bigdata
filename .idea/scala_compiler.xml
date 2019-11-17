@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ScalaCompilerConfiguration">
     <profile name="Maven 1" modules="allst-scala">
+      <option name="dynamics" value="true" />
       <parameters>
         <parameter value="-target:jvm-1.8" />
       </parameters>
