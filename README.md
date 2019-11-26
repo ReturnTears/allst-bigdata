@@ -1629,8 +1629,39 @@ copy创建一个与现有对象值相同的新对象, 并可以通过带名参�
 ```
 
 ### AKKA
-kafka https://www.bilibili.com/video/av65544753?p=7
-scala https://www.bilibili.com/video/av39126512?p=225
+```
+AKKA介绍
+AKKA是Java虚拟机JVM平台上构建并发,分布式和容错应用的工具包和运行时,是由Scala编写的,同时支持Scala和Java的开发接口
+AKKA主要应用于:编写稳定的并发程序, 程序员不再过多的考虑线程,锁和资源竞争细节
+
+AKKA中Actor模型
+Actor模型用于解决什么问题呢?
+1),处理并发问题关键是要保证共享数据的一致性和正确性,因为程序是多线程时,多个线程对同一数据进行修改,若不加同步条件,势必会造成数据污染, 但是当我们对关键代码加入同步条件synchronized后, 实际上大并发就会阻塞这段代码, 对程序效率很大影响
+2),若是用单个线程处理, 不会有数一致性的问题, 但是系统的性能又不能保证
+3),Actor模型的出现解决了这个问题, 简化并发编程,提升程序性能,
+
+Actor模型是一种处理并发问题的解决方案
+
+Actor模型及其说明
+4),Actor与Actor之间只能用消息进行通信, 当一个Actor给另一个Actor发消息, 消息是有顺序的,只需要将消息投递到相应的邮箱即可.
+5),怎么处理消息是由接收消息的Actor决定的, 发送消息Actor可以等待回复,也可以异步处理
+6),ActorSystem的职责是负责创建并管理其创建的Actor, ActorSystem是单例的,一个JVM进程中有一个即可, 而Actor是可以有多个的
+7),Actor模型是对并发模型进行了更高的抽象
+8),Actor模型是异步,非阻塞,高性能的事件驱动编程模型
+9),Actor模型是轻量级事件处理(1GB内存可容纳百万级别个Actor), 隐藏处理大并发性能高
+
+Actor模型工作机制说明
+1),ActorSystem创建Actor
+2),ActorRef: 可以理解成是Actor的代理或者引用, 消息是通过ActorRef来发送,而不是通过Actor发送消息, 通过那个ActorRef发消息就是把消息发给那个Actor
+3),消息发送到Dispatcher Message(消息分发器), 它得到消息后, 会将消息进行分发到对应的MailBox,(注:Dispatcher Message可以理解成一个线程池, MailBox可以理解成消息队列,可以缓冲多个消息, 遵守FIFO)
+4),Actor可以通过receive方法来获取消息, 然后进行处理
+
+Actor间传递消息机制
+1),每一个消息就是一个Message对象, Message继承了Runnable, 因为Message就是线程类
+2),从Actor模型工作机制上看很麻烦, 但是程序员编程时只需要编写Actor就可以, 其他的交给Actor模型完成即可
+3),A Actor要给B Actor发送消息, 那么A Actor要先拿到(或持有)B Actor的代理对象ActorRef才能发送消息
+```
+https://www.bilibili.com/video/av39126512?p=237
 
 
 ### 快捷键  shortcut key

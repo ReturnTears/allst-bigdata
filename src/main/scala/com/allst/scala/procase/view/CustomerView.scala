@@ -29,7 +29,7 @@ class CustomerView {
             key match {
                 case '1' => this.add() // println("添加客户")
                 case '2' => println("修改客户")
-                case '3' => println("删除客户")
+                case '3' => this.del() // println("删除客户")
                 case '4' => this.list() //println("查看客户")
                 case '5' => println("其他客户")
                 case '6' => this.loop = false
@@ -67,5 +67,24 @@ class CustomerView {
         val customer = new Customer(name, gender, age, tel, email)
         customerService.add(customer)
         println("-------添加客户完成-------")
+    }
+
+    def del(): Unit = {
+        println("-------删除客户-------")
+        println("请选择待删除客户编号(-1退出):")
+        val id = StdIn.readInt()
+        if (id == -1) {
+            println("-------删除失败-------")
+            return
+        }
+        println("确认删除?(Y/N)")
+        val choice = StdIn.readChar().toLower
+        if (choice == 'y') {
+            if (customerService.del(id)) {
+                println("-------删除成功-------")
+                return
+            }
+        }
+        println("-------删除失败-------")
     }
 }
