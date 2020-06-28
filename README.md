@@ -144,7 +144,7 @@ Scala中的注释类型:
 
 ### Part15 / 16 /17
 **Scala变量**
-```
+```text
 变量是程序的基本组成单位,变量相当于内存中一个数据存储控件的表示, 你可以把变量看做是一个房间的门牌号，
 通过门牌号我们可以找到房间, 而通过变量名可以访问到变量
 
@@ -212,7 +212,7 @@ AnyRef          |           AnyRef类是Scala里所有引用类reference class�
 ·1表示负数
 
 **整数的使用细节:**
-```
+```text
 1 - Scala个整数类型有固定的表示范围和字段长度, 不受具体的OS的影响, 以保证Scala程序的可移植性性
 2 - scala的整型 **常量/字面量** 默认为Int型， 声明Long型 常量/字面量 须后面加"l"或者“L”
 3 - Scala程序中变量常声明为Int型, 除非不足以表示大数, 才使用Long
@@ -229,7 +229,7 @@ AnyRef          |           AnyRef类是Scala里所有引用类reference class�
 
 ### Part20
 **字符类型(Char)**
-```
+```text
 字符类型可以表示单格字符,字符类型是Char,16位无符号Unicode(Unicode编码包含了assci码)字符(2个字节),区间值为U+0000到U+FFFF
 
 字符类型使用细节:
@@ -240,14 +240,14 @@ AnyRef          |           AnyRef类是Scala里所有引用类reference class�
 
 ```
 **注意:**
-```
+```text
 当把一个计算的结果赋值一个变量,则编译器会进行类型转换及判断(即会查看范围+类型)
 当把一个字面量赋值一个变量,则编译器会进行数值范围判断
 ```
 
 ### Part21
 **布尔类型:Boolean**
-```
+```text
 基本介绍:
 1 - 布尔类型也叫Boolean类型, Boolean类型数据只允许取值true和false
 2 - Boolean类型占1个字节
@@ -260,7 +260,7 @@ AnyRef          |           AnyRef类是Scala里所有引用类reference class�
 ```
 
 **Unit类型 Null类型 Nothing类型**
-```
+```text
 使用细节和注意事项:
 1 - Null类型只有一个实例对象,null,类似于Java的null引用.null可以赋值给任意引用类型(AnyRef),但是不能赋值给值类型(AnyVal)
 2 - Unit类型用来标识过程,也就是没有明确返回值的函数.由此可见,unit类似于Java的void.Unit只有一个实例,(),这个实例也没有实质的意义
@@ -349,7 +349,7 @@ AnyRef          |           AnyRef类是Scala里所有引用类reference class�
 
 ### Part24
 **值类型转换**
-```
+```text
 自动类型转换细节说明:
 1 - 有多种类型的数据混合运算时,系统首先会自动将所有数据转换成容量最大的那种数据类型,然后在进行计算
 2 - 当我们把精度(容量)大的数据类型赋值给精度(容量)小的数据类型时就会报错,反之,就会进行自动类型转换
@@ -362,7 +362,7 @@ AnyRef          |           AnyRef类是Scala里所有引用类reference class�
 todo
 ```
 **强制类型转换**
-```
+```text
 自动类型转换的逆过程,将容量大的数据类型转换为容量小的数据类型,使用时需要加上强制类型转换函数,
 但可能造成精度降低或溢出, 格外注意
 强制类型转换细节说明:
@@ -376,7 +376,7 @@ todo
 
 ### Part26
 **值类型和String类型的转换**
-```
+```text
 在开发中我们经常需要将基本数据类型转成String类型.或者将String类型转换成基本数据类型
 基本数据类型转String类型:
 语法:将基本数据类型的值 + ""即可, String str = true + ""; 或者 4.5 + ""; 或者 1000 + ""
@@ -389,13 +389,13 @@ String类型转基本数据类型:
 
 ### Part27 
 **标识符的命名规范**
-```
+```text
 标识符概念
 1 - Scala对各种变量\方法\函数等命名时使用的字符序列化称为标识符
 2 - 凡是自己可以起名字的地方都叫标识符
 ```
 **标识符的命名规则(Remenber)**
-```
+```text
 Scala中的标识符声明, 基本和Java是一致,细节上有所不同.
 1 - 首字符为字母, 后续字符任意字母和数字,美元符号,可后接下划线_
 2 - 不能以数字开头
@@ -413,7 +413,7 @@ println(`true`)
 
 ```
 **Scala关键字(39个)**
-```
+```text
 package import class object trait extends with type forSome
 private protected abstract sealed final implicit lazy override
 try catch finally throw
@@ -425,7 +425,7 @@ new true false null
 
 ### Part28
 **运算符**
-```
+```text
 运算符是一种特殊的符号,用以表示数据的运算\赋值和比较等
 1 - 算术运算符
     算术运算符(arithmetic)是对数值类型的变量进行运算的,在Scala程序中使用非常多
@@ -474,7 +474,7 @@ Scala不支持三目运算, 在Scala中使用if-else的方式实现,
 Scala在这里的设计理念是:一种事情尽量只有一种方法完成,这样可以让代码风格更加统一
 ```
 **运算符的优先级**
-```
+```text
 1 - 运算符有不同的优先级,所谓优先级就是表达式运算中的运算顺序
 2 - 只有单目运算符\赋值运算符是从右往左运算的
 3 - 运算符优先级和Java一样
@@ -499,7 +499,7 @@ R = 从右到左
 ```
 
 ## Part35 程序流程控制
-```
+```text
     同Java,分为三大类:
     顺序控制: 从上到下逐行执行, 中间没有任何判断和跳转
     分支控制: 
@@ -538,7 +538,7 @@ R = 从右到左
 ```
 
 ## 函数式编程
-```
+```text
 函数式编程的基础:
 常见概念说明:
 1,在Scala中,方法和函数几乎可以等同,只是函数的使用方式更加的灵活多样[方法转函数]
@@ -1093,7 +1093,7 @@ Scala中的嵌套类
 ```
  
 ### 函数式编程高级
-```
+```text
 值函数(函数字面量)
 
 高阶函数
@@ -1365,7 +1365,7 @@ Map的遍历
 
 ```
 **Scala中的Set**
-```
+```text
 Set简称集, 集是不重复元素的结合, 集不保留顺序, 默认是以哈希集实现
 Scala中set默认是不可变的集合, 想要使用可变集合, 需要引入scala.collection.mutable.Set包
 
@@ -1393,7 +1393,7 @@ for (x <- set) {
 
 ### Scala数据结构 - 集合下
 **集合元素的map操作**
-```
+```text
 集合映射操作问题:
 在Scala中可用通过map映射操作来解决集合映射问题, 将集合中的每一个元素通过指定功能(函数)映射(转换)成新的结果集合, 
 就是所谓的将函数作为参数传递给另一个函数, 这就是函数式编程的特点  
@@ -1489,7 +1489,7 @@ SynchronizedStack
 ```
 
 ### Scala模式匹配 (重点)
-```
+```text
 Scala中模式匹配蕾仕于Java中的switch语法, 但是更加强大
 模式匹配语法中, 采用match关键字声明, 每个分支采用case关键字进行声明, 当需要匹配时, 会从第一个case分支开始, 如果匹配成功,
  那么执行对应的逻辑代码, 如果匹配不成功, 继续执行下一个分支进行判断.
@@ -1593,7 +1593,7 @@ copy创建一个与现有对象值相同的新对象, 并可以通过带名参�
 
 ### Scala核心编程
 #### 使用递归的方式去思考, 去编程
-```
+```text
 严格意义上讲, 编程的范式分为:
 命令式编程(Imperative Programming):
 函数式编程(Functional Programming):
@@ -1612,7 +1612,7 @@ copy创建一个与现有对象值相同的新对象, 并可以通过带名参�
 ```
 
 ### Scala项目
-```
+```text
 客户信息管理系统
 
 项目开发流程:
@@ -1648,7 +1648,7 @@ javap xxx.class文件, 查看反编译后的代码
 
 ```
 ### 学习的套路
-```
+```text
 学一个技术或知识点的流程:
 1,需求(遇到问题): 
 2,解决思路(用传统的方法可以解决但是不够完美, 真解决不了的时候,用新技术)
@@ -1658,6 +1658,45 @@ javap xxx.class文件, 查看反编译后的代码
 ```
 ```text
 
+
+
+```
+
+# Java Comparison Scala
+
+## Coding Scheme
+```text
+Java： psvm
+Scala：main
+
+```
+## Scala
+```text
+Scala语言最重要的四个特征：兼容性、简洁、高层抽象、高级的静态类型化
+Scala是兼容的
+Scala是简洁的
+Scala是高级的
+Scala是静态类型的：Scala是一种具有非常高级的静态类型系统的语言
+
+Scala入门
+1、Scala解释器：它是编写Scala表达式和程序的交互式"Shell",只要在解释器里输入表达式，它就能计算并打印结果值，Scala的交互式shell叫做scala
+2、变量定义：var和val。val类似Java里的final变量，var类似Java里的非final变量
+3、函数定义：def 函数名(参数列表): 返回值类型 = {函数体} , 参数列表=> 变量： 类型
+4、编写Scala脚本：Scala脚本的命令行参数保存在名为args的Scala数组中,例如：将如下代码 println("Hello," + args(0) + "!") 保存在hello.scala文件中，然后运行脚本文件：scala hello.scala yang
+               这条命令里，命令行参数"yang"被传递给脚本，并通过args(0)获得。打印如下：hello, yang!
+5、用while做循环，用if做判断
+   while (i < args.length) {} 这种编码风格被称为指令式(imperative)编程。这种风格常见于Java，C++，C这些语言，或者逐条执行指令，或者循环枚举，并经常改变不同函数之间的共享状态。
+6、用foreach和for做枚举
+   深入了解Scala后，会发现更倾向于一种更为函数式的编程风格
+   函数式语言的主要特征之一就是：函数是头等结构，这也正是Scala的主要特征。例如：
+   args.foreach(arg => println(arg)) 或者想要表达得更明确：args.foreach((arg: String) => println(arg))
+   如果函数字面量只有一行语句并只带一个参数，可以写成如下：
+   args.foreach(println)
+   Scala只有一个指令式for得函数型与之近似：
+   for (arg <- args)
+    println(arg)
+
+Scala入门再探
 
 
 ```
