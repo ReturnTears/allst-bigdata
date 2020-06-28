@@ -1700,5 +1700,34 @@ Scala入门再探
 7、使用类型参数化数组(Array)：参数化的意思是指在创建实例的同时完成对它的"设置"。使用值参数化实例可以通过把值传递给构造器的圆括号来实现。
    Scala的数组是通过索引值加圆括号进行访问的，而不是像Java那样把索引值放在方括号里面。
    
-
+8、使用列表(List)
+   方法没有副作用是函数式风格编程的重要理念。计算并返回值是方法唯一的目的。好处：1)、方法之间降低耦合性，更加可靠和易于重用 。
+   2)、方法的参数和返回值都经过类型检查器的检查，因此可以比较容易地根据类型错误推断其中隐含的逻辑错误。而这种函数式编程思想在面向对象编程中的应用也就意味着对象的不可变性。
+   数组Array是可变的(元素值是可变的)
+   列表List是不可变的同类型对象序列(元素是不可变的)
+   列表List定义":::"方法实现叠加功能
+   列表List定义"::"操作符，发音"cons",它可以把新元素组合到现有列表的最前端,然后返回作为执行结果的新列表
+   "::"是右操作数的方法
+   Nil是空列表的简写,放在最后，因为::是定义在List上的方法
+   List的一些方法：
+   List() / Nil
+   :::
+   count(condition)
+   drop(index)
+   dropRight(index)
+   exists(condition)
+   filter(condition)
+   forall(condition)
+   foreach(condition)
+   head
+   init
+   isEmpty
+   last
+   length
+   map(condition)
+   mkString(condition)
+   remove(condition)
+   reverse
+   sort(condition)
+   tail
 ```
