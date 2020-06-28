@@ -1730,4 +1730,8 @@ Scala入门再探
    reverse
    sort(condition)
    tail
+   
+9、使用元组Tuple
+   元组也是很有用的容器对象
+
 ```
