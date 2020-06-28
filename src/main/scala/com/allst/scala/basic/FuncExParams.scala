@@ -1,7 +1,5 @@
 package com.allst.scala.basic
 
-import scala.util.control.Exception
-
 /**
   * 函数式编程风格
  *
