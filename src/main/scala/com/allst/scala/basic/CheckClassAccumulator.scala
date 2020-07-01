@@ -13,7 +13,7 @@ object CheckClassAccumulator {
     if (cache.contains(s))
       cache(s)
     else {
-      val acc = new CheckClassAccumulator // CheckClassAccumulator叫做单例对象
+      val acc = new CheckClassAccumulator // object CheckClassAccumulator叫做单例对象，单例对象与class CheckClassAccumulator同名时， 这个单例对象又被称为class的伴生对象
       for (c <- s)
         acc.add(c.toByte)
       val cs = acc.checksum()
