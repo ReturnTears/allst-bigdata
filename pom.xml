@@ -3,19 +3,21 @@
   <groupId>com.allst.scala</groupId>
   <artifactId>allst-scala</artifactId>
   <version>1.0-SNAPSHOT</version>
-  <inceptionYear>2008</inceptionYear>
+  <inceptionYear>2020</inceptionYear>
   <properties>
     <!--<scala.version>2.12.4</scala.version>-->
     <scala.version>2.12.6</scala.version>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <lg4j2.version>2.12.1</lg4j2.version>
   </properties>
 
-  <repositories>
+  <!--<repositories>
     <repository>
       <id>scala-tools.org</id>
       <name>Scala-Tools Maven2 Repository</name>
       <url>http://scala-tools.org/repo-releases</url>
     </repository>
-  </repositories>
+  </repositories>-->
 
   <pluginRepositories>
     <pluginRepository>
@@ -55,12 +57,59 @@
       <version>2.1.0</version>
     </dependency>-->
 
+    <!-- 添加MySQL -->
+    <dependency>
+      <groupId>mysql</groupId>
+      <artifactId>mysql-connector-java</artifactId>
+      <version>8.0.17</version>
+    </dependency>
 
       <!-- 添加Spark API -->
     <dependency>
       <groupId>org.apache.spark</groupId>
       <artifactId>spark-sql_2.11</artifactId>
       <version>2.2.0</version>
+    </dependency>
+
+    <!-- 添加Hive相关Jar -->
+    <dependency>
+      <groupId>org.apache.hive</groupId>
+      <artifactId>hive-jdbc</artifactId>
+      <version>2.3.7</version>
+      <exclusions>
+        <exclusion>
+          <groupId>log4j</groupId>
+          <artifactId>log4j</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>org.slf4j</groupId>
+          <artifactId>slf4j-log4j12</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    <!-- Logger（log4j2） -->
+    <dependency>
+      <groupId>org.apache.logging.log4j</groupId>
+      <artifactId>log4j-core</artifactId>
+      <version>${lg4j2.version}</version>
+    </dependency>
+    <!-- Log4j 1.x API Bridge -->
+    <dependency>
+      <groupId>org.apache.logging.log4j</groupId>
+      <artifactId>log4j-1.2-api</artifactId>
+      <version>${lg4j2.version}</version>
+    </dependency>
+    <!-- SLF4J Bridge -->
+    <dependency>
+      <groupId>org.apache.logging.log4j</groupId>
+      <artifactId>log4j-slf4j-impl</artifactId>
+      <version>${lg4j2.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter-api</artifactId>
+      <version>5.4.0</version>
+      <scope>test</scope>
     </dependency>
   </dependencies>
 
