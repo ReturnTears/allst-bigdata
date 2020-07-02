@@ -1,7 +1,5 @@
 package com.allst.scala.basic
 
-import java.io.File
-
 /**
   * scala 内建控制结构
   *
@@ -75,7 +73,40 @@ object ScalaInlay extends App {
     println(file)
 
   /*
-    嵌套枚举
-   */
+    嵌套枚举：如果加入多个<-子句，就得到了嵌套的"循环"
 
+   */
+  def fileLines(file: java.io.File) =
+    scala.io.Source.fromFile(file).getLines().toList
+
+  def grep(pattern: String) =
+    for (
+      file <- filesHere
+      if file.getName.endsWith(".scala"); // 如果在发生器中加入超过一个过滤器，if子句必须用分号隔开
+      line <- fileLines(file)
+      if line.trim.matches(pattern)
+    ) println(file + " : " + line.trim)
+  grep(".*gcd.*")
+
+  /*
+    流间变量绑定
+   */
+  def grep2(pattern: String) =
+    for (
+      file <- filesHere
+      if file.getName.endsWith(".scala"); // 如果在发生器中加入超过一个过滤器，if子句必须用分号隔开
+      line <- fileLines(file);
+      trimmed = line.trim
+      if trimmed.matches(pattern)
+    ) println(file + " : " + trimmed)
+
+  /*
+    制造新集合: 创建一个值去记住每一次的迭代，只要在for表达式之前加上关键字yield。
+    for (子句) yield {循环体}
+   */
+  def scalaFiles =
+    for (
+      file <- filesHere
+      if file.getName.endsWith(".scala")
+    ) yield file
 }
