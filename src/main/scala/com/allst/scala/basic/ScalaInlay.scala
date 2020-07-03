@@ -109,4 +109,19 @@ object ScalaInlay extends App {
       file <- filesHere
       if file.getName.endsWith(".scala")
     ) yield file
+
+  /*
+    抛出异常以及捕获异常
+   */
+  var n = 7
+  def half =
+    try {
+      if (n % 2 == 0)
+        n / 2
+      else
+        throw new RuntimeException("")
+    } catch {
+      case ex: RuntimeException => println("抛出:RuntimeException")
+      case ex: IndexOutOfBoundsException => println("IndexOutOfBoundsException")
+    }
 }
