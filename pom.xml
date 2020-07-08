@@ -8,7 +8,7 @@
     <!--<scala.version>2.12.4</scala.version>-->
     <scala.version>2.12.6</scala.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <lg4j2.version>2.12.1</lg4j2.version>
+    <lg4j2.version>2.13.3</lg4j2.version>
   </properties>
 
   <!--<repositories>
