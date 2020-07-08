@@ -3,7 +3,7 @@ package com.allst.scala.basic
 import java.io.{FileNotFoundException, FileReader, IOException}
 import java.net.MalformedURLException
 
-import scala.sys.process.processInternal.URL
+import java.net.URL
 /**
   * 抛出异常
   *
