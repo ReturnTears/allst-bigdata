@@ -179,6 +179,29 @@
           </classpathContainers>
         </configuration>
       </plugin>
+      <!-- 编译插件 -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.6.0</version>
+        <configuration>
+          <scalaCompatVersion>2.12</scalaCompatVersion>
+          <scalaVersion>2.12.6</scalaVersion>
+          <encoding>UTF-8</encoding>
+        </configuration>
+        <executions>
+          <execution>
+            <id>compile-scala</id>
+            <phase>compile</phase>
+            <goals>
+              <goal>add-source</goal>
+              <goal>compile</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <!-- 打jar包插件 -->
+
     </plugins>
   </build>
   <reporting>
