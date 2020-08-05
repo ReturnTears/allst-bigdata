@@ -42,8 +42,7 @@ public class CascaderApp {
         Map<Integer, List<TreeItem>> empMap = empList.stream().filter(emp -> emp.getDeptId() != null).map(Employee::empNode)
                 .collect(Collectors.groupingBy(TreeItem::getParentId));
         //BFS辅助队列
-        List<TreeItem> queue = new ArrayList<>();
-        queue.addAll(treeItem);
+        List<TreeItem> queue = new ArrayList<>(treeItem);
         for (int i = 0; i < queue.size(); i++) {
             TreeItem node = queue.get(i);
             //遍历时先将子部门放入队列中
@@ -58,6 +57,6 @@ public class CascaderApp {
                 node.getChildren().addAll(children);
             }
         }
-        treeItem.forEach(x -> System.out.println(x));
+        treeItem.forEach(System.out::println);
     }
 }

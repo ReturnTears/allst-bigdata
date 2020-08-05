@@ -1,5 +1,6 @@
 package com.allst.scala.mspp
 
+import scala.collection.mutable._
 /**
   * 类型匹配
   * @author YiYa
