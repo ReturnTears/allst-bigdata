@@ -1,5 +1,6 @@
 package com.allst.scala.flink
 
+import org.apache.flink.api.java.utils.ParameterTool
 import org.apache.flink.streaming.api.scala.{DataStream, StreamExecutionEnvironment}
 import org.apache.flink.api.scala._
 import org.apache.hadoop.mapred.TextOutputFormat
@@ -18,13 +19,22 @@ object StreamingWordCount {
   def main(args: Array[String]): Unit = {
     // one 设置环境
     val env = StreamExecutionEnvironment.getExecutionEnvironment
+    //env.setParallelism(4)
+
+    // 从外部命令获取参数, 运行时在program arguments中配置 --host localhost --port 9999
+    val parameterTool: ParameterTool = ParameterTool.fromArgs(args)
+    val  host: String = parameterTool.get("host")
+    val  port: Int = parameterTool.getInt("port")
+
     // two 指定数据源地址， 读取输入数据
     // var text = env.readTextFile("file:///root/data/inp.txt")
-    var text = env.socketTextStream("localhost", 9999)
+    // var text = env.socketTextStream("localhost", 9999)
+    var text = env.socketTextStream(host, port)
     // three 转换逻辑
     val counts: DataStream[(String, Int)] = text.flatMap(_.toLowerCase.split(" "))
       .filter(_.nonEmpty)
       .map((_, 1))
+      //.setParallelism(3) // 可以灵活设置并行度
       .keyBy(0)
       .sum(1)
     // four: 指定计算结果输出位置
