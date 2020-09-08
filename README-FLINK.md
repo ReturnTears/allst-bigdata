@@ -2,12 +2,12 @@
 
 ## Flink 简介
 ```text
-\color{red}Flink是什么?
+Flink是什么?
 Apache Flink是一个框架和分布式处理引擎, 用于对无界和有界数据流进行状态计算。
 
 Flink应用场景很广泛
 
-\color{red}为什么选择Flink?
+为什么选择Flink?
 ·流数据更真实地反应了我们的生活方式
 ·传统的数据架构是基于有限数据集
 ·我们需要的目标:
@@ -69,6 +69,90 @@ Flink VS Spark Streaming
 运行时架构
     spark是批计算，将DAG划分为不同的stage，一个完成后才可以计算下一个
     flink是标准的流执行模式，一个事件在一个节点处理完成后可以直接法网下一个节点进行处理
+
+Flink命令行提交作业:
+./bin/flink run -c xxx.*.xxx（指定提交的类） -p 2 （并行度） /xxx/xxx/*.jar --host master --port 1234
+Flink命令行取消作业提交:
+./bin/flink cancel JobId （job id）
+Flink命令行查看正在运行的作业
+./bin/flink list
+Flink命令行查看所有的作业
+./bin/flink list -a
+
+Flink命令行启动flink集群
+./bin/start-cluster.sh
+Flink命令行停止flink集群
+./bin/stop-cluster.sh
+
+Yarn模式部署Flink
+Flink on Yarn
+Flink提供了两种在yarn上运行的模式， 分别为session-cluster和per-job-cluster模式
+session-cluster模式:
+    session-cluster模式需要先启动集群， 然后再提交作业， 接着会向yarn申请一块空间后， 资源永远保持不变。
+  如果资源满了， 下一个作业就无法提交，只能等到yarn中的其中一个作业执行完成后，释放了资源， 下个作业才会正常提交。
+  所有作业共享Dispatcher和ResourceManager，共享资源， 适合规模小执行时间短的作业。
+  在yarn中初始化一个flink集群，开辟指定的资源， 以提交作业都向这里提交。这个flink集群会常驻yarn莫群中，除非手工停止。
+session-cluster模式启动过程:
+1、启动Hadoop集群
+2、./bin/yarn-seesion.sh -n 2 -s 2 -jm 1024 -tm 1024 -nm test -d
+    -n 表示taskmanager数量
+    -s 表示taskmanager的slot数量， 默认一个slot一个core
+    -jm 表示Jobmanager的内存， MB
+    -tm 表示每个taskmanager的内存， MB
+    -nm 表示yarn的appName
+    -d 表示后台执行
+3、提交任务， 同 >> Flink命令行提交作业
+4、可以去yarn控制台查看任务状态
+5、取消yarn-session
+    yarn application --kill id （这里的id是yarn上web ui前端上运行任务的id）
+
+per-job-cluster模式:
+    一个job会对应一个集群， 每提交一个作业会根据自身的情况都会单独向yarn申请资源，直到作业执行完成。一个作业的完成
+  并不影响下一个作业的正常提交和运行。独向Dispatcher和ResourceManager， 按需解释资源申请，适合规模大，运行时间长的作业。
+  每次提交都会常见一个新的flink集群，任务之间相互独立，互不影响，方便管理。任务执行完成之后创建的集群也会消失。
+
+per-job-cluster模式启动流程：
+1、启动Hadoop集群
+2、不启动yarn-session, 直接执行job
+./bin/flink run -m yarn-cluster -c xxx (执行程序的类) xxx.jar --host master --port 1234
+重点：-m yarn-cluster
+```
+
+## Flink 运行架构
+```text
+😊😊😊 Flink运行时的组件
+o(*￣▽￣*)ブ JobManager
+作业管理器:
+1、控制一个应用程序执行的主进程，也就是说，每个应用程序都会被一个不同的JobManager所控制执行
+2、JobManager会先接收到要执行的应用程序，这个应用程序会包括：
+    作业图(JobGraph)、
+    逻数据流图(logical dataflow graph)
+    和打包了所有的类、库和其他资源的jar包。
+3、JobManager会把JobGraph转换成一个物理层面的数据流图，这个图被叫做“执行图”(ExecutionGraph), 包含了所有可以并发执行的任务。
+4、JobManager会向资源管理器(ResourceManager)请求执行任务必要的资源， 也就是任务管理(TaskManager)上的插槽(slot)。
+    一旦它获取到了足够的资源，就会将执行图分发到真正执行他们的TaskManager上， 而在运行过程中， 
+    JobManager会负责所有需要中央协调的操作，，比如说检查点checkpoint的协调。
+
+o(*￣▽￣*)ブ TaskManager
+任务管理器: TaskManager是主要干活的
+1、Flink的工作进程。通常在Flink中会有多个TaskManager运行， 每一个TaskManager都包含了一定数量的插槽(slot).
+   插槽的数量限制了TaskManager能够执行的任务数量。
+2、启动之后，TaskManager会向资源管理器注册它的插槽，受到资源管理器的指令后，TaskManager就会将一个或者多个插槽提供给JobManager调用。
+   JobManager就可以向插槽分配tasks来执行。
+3、在执行的过程中， 一个TaskManager可以跟其他运行同一应用程序的TaskManager交换数据
+
+o(*￣▽￣*)ブ ResourceManager
+资源管理器:
+1、主要负责管理任务管理器(TaskManager)的插槽(slot)，TaskManager插槽是flink中定义的处理资源单元。
+2、Flink为不同的环境和资源管理工具提供了不同资源管理器，比如YARN、Mesos、K8s以及standalone部署/
+3、当JobManager申请插槽资源是， ResourceManager会将有空闲插槽的TaskManager分配给JobManager。
+   如果ResourceManager没有足够的插槽来满足JobManager的请求， 它还可以向资源提供平台发起会话， 以提供启动TaskManager进程的容器。
+
+o(*￣▽￣*)ブ Dispatcher（分发器）
+1、可以跨作业运行， 它为应用提交提供了REST接口
+2、当一个应用被提交执行时，分发器就会启动并将应用移交给一个JobManager
+3、Dispatcher也会启动一个web ui， 用来方便展示和监控作业执行的信息
+4、Dispatcher在架构中可能并不是必需的，这取决于应用提交运行的方式
 ```
 
 ##  Flink jar
