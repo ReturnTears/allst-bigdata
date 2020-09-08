@@ -153,6 +153,15 @@ o(*￣▽￣*)ブ Dispatcher（分发器）
 2、当一个应用被提交执行时，分发器就会启动并将应用移交给一个JobManager
 3、Dispatcher也会启动一个web ui， 用来方便展示和监控作业执行的信息
 4、Dispatcher在架构中可能并不是必需的，这取决于应用提交运行的方式
+
+并行度(Parallelism):
+一个特定算子的子任务(subtask)的个数被称之为其并行度(Parallelism)。
+一般情况下，一个stream的并行度，可以认为就是其所有算子中最大的并行度。
+
+TaskManager和Slots
+Flink中每一个TaskManager都是一个JVM进程， 他可能会在独立的线程上执行一个或多个子任务。
+为了控制一个TaskManager能够接收多少个task，TaskManager通过task slot来进行控制
+（一个TaskManager至少有一个slot）
 ```
 
 ##  Flink jar
