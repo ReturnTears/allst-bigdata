@@ -8,7 +8,8 @@ import org.apache.flink.streaming.connectors.kafka.FlinkKafkaConsumer011
 
 /**
   * Flink 流处理 Source API - 1 : 从集合中读取数据源
-  *
+  * 开启kafka 生产者console测试， --topic的主题要和代码中指定的topic一致
+  * bin/kafka-console-producer.sh --broker-list 192.168.2.22:9092 --topic music
   * @author YiYa
   * @since 2020-09-12 上午 09:18
   */
@@ -32,7 +33,8 @@ object FlinkStreamApi1 {
         println()
 
         // 从文件读取数据
-        val streamFile = env.readTextFile("E:\\IdeaProjects\\allst-scala\\src\\main\\resources\\api.txt")
+        //val streamFile = env.readTextFile("E:\\IdeaProjects\\allst-scala\\src\\main\\resources\\api.txt")
+        val streamFile = env.readTextFile("E:\\Projects\\IdeaProjects\\allst-scala\\src\\main\\resources\\api.txt")
         streamFile.print()
 
         // 从Kafka读取数据
