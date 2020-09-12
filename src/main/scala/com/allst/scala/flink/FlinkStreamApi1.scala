@@ -1,8 +1,9 @@
 package com.allst.scala.flink
 
-import java.util.Properties
+import java.util.{Properties, Random}
 
 import org.apache.flink.api.common.serialization.SimpleStringSchema
+import org.apache.flink.streaming.api.functions.source.SourceFunction
 import org.apache.flink.streaming.api.scala._
 import org.apache.flink.streaming.connectors.kafka.FlinkKafkaConsumer011
 
@@ -33,17 +34,45 @@ object FlinkStreamApi1 {
         println()
 
         // 从文件读取数据
-        //val streamFile = env.readTextFile("E:\\IdeaProjects\\allst-scala\\src\\main\\resources\\api.txt")
-        val streamFile = env.readTextFile("E:\\Projects\\IdeaProjects\\allst-scala\\src\\main\\resources\\api.txt")
+        val streamFile = env.readTextFile("E:\\IdeaProjects\\allst-scala\\src\\main\\resources\\api.txt")
+        //val streamFile = env.readTextFile("E:\\Projects\\IdeaProjects\\allst-scala\\src\\main\\resources\\api.txt")
         streamFile.print()
 
         // 从Kafka读取数据
-        val properties = new Properties()
-        properties.setProperty("bootstrap.servers", "192.168.2.22:9092")
-        properties.setProperty("group.id", "consumer-group")
-        val  streamKafka = env.addSource(new FlinkKafkaConsumer011[String]("music", new SimpleStringSchema(), properties))
-        streamKafka.print()
+        //val properties = new Properties()
+        //properties.setProperty("bootstrap.servers", "192.168.2.22:9092")
+        //properties.setProperty("group.id", "consumer-group")
+        //val  streamKafka = env.addSource(new FlinkKafkaConsumer011[String]("music", new SimpleStringSchema(), properties))
+        //streamKafka.print()
+
+        // 自定义Source
+        val streamDef = env.addSource(new MyMusicFunction)
+        streamDef.print()
+
         // 执行
         env.execute("api exec")
     }
+}
+
+// 自定义SourceFunction
+class MyMusicFunction extends SourceFunction[Music] {
+
+    var running: Boolean = true
+
+    override def run(sourceContext: SourceFunction.SourceContext[Music]): Unit = {
+        val r = new Random()
+        var temp = 1.to(10).map(i => ("Victory_" + i, r.nextDouble() * 20))
+        while (running) {
+            temp = temp.map(
+                data => (data._1, data._2 + r.nextGaussian())
+            )
+            val time = System.currentTimeMillis()
+            temp.foreach(t => sourceContext.collect(Music(t._1, t._2.toInt, time.toString)))
+
+            // 模拟间隔时间
+            Thread.sleep(2000)
+        }
+    }
+
+    override def cancel(): Unit = running = false
 }
