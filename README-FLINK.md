@@ -196,6 +196,16 @@ Flink采用了一种称为任务链的优化技术，可以在特定条件下减
 相同并行度的one-to-one操作，Flink这样相连的算子连接在一起形成一个task，原来的算子成为里面的subtask.
 并行度相同，并且是one-to-one操作，两个条件缺一不可。
 
+```
+
+## Flink 流处理API
+```text
+environment > source > transformation > sink
+1、getExecutionEnvironment
+    创建一个执行环境， 表示当前执行程序的上下文。如果程序是独立调用的，则此方法返回本地执行环境。
+    如果从命令行客户端调用程序以提交到集群，则此方法返回此集群的执行环境，即：
+    getExecutionEnvironment会根据查询运行的方式决定返回什么样的运行环境，是一中常用的创建执行环境的方式
+    val env = StreamExecutionEnvironment.getExecutionEnvironment
 
 
 
