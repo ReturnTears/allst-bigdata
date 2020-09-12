@@ -15,18 +15,18 @@ import org.apache.flink.streaming.connectors.kafka.FlinkKafkaConsumer011
   * @since 2020-09-12 上午 09:18
   */
 
-case class Music(name: String, age: Int, author: String)
+case class Music(name: String, age: Int, author: String, hot: Long)
 
-object FlinkStreamApi1 {
+object FlinkStreamSourceApi {
     def main(args: Array[String]): Unit = {
         val env = StreamExecutionEnvironment.getExecutionEnvironment
         // env.setParallelism(1)
         val dtList = List(
-            Music("有心人", 1980, "zhanggr"),
-            Music("Strongest", 2020, "Alan Walker"),
-            Music("So:Lo", 2010, "Kate"),
-            Music("Fly", 2019, "Avril"),
-            Music("Victory", 2018, "Two")
+            Music("有心人", 1980, "zhanggr", 1234567L),
+            Music("Strongest", 2020, "Alan Walker", 1234568L),
+            Music("So:Lo", 2010, "Kate", 1234517L),
+            Music("Fly", 2019, "Avril", 1234267L),
+            Music("Victory", 2018, "Two", 1224567L)
         )
         // 从集合读取数据
         val stream = env.fromCollection(dtList)
@@ -67,7 +67,7 @@ class MyMusicFunction extends SourceFunction[Music] {
                 data => (data._1, data._2 + r.nextGaussian())
             )
             val time = System.currentTimeMillis()
-            temp.foreach(t => sourceContext.collect(Music(t._1, t._2.toInt, time.toString)))
+            temp.foreach(t => sourceContext.collect(Music(t._1, t._2.toInt, time.toString, r.nextLong())))
 
             // 模拟间隔时间
             Thread.sleep(2000)
