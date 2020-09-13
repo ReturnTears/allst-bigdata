@@ -207,6 +207,36 @@ environment > source > transformation > sink
     getExecutionEnvironment会根据查询运行的方式决定返回什么样的运行环境，是一中常用的创建执行环境的方式
     val env = StreamExecutionEnvironment.getExecutionEnvironment
 
+Source
+
+transformation
+
+Flink支持的数据类型:
+Java和Scala支持的所有基础数据类型
+Java和Scala元组
+Scala样例类
+Java简单对象(POJOs)
+以及Arrays,Lists,Maps,Enums
+
+实现UDF函数 -- 更细粒度的控制流
+函数类(function classes)
+Flink曝露了所有udf函数的接口(实现方式为接口或者抽象类)
+匿名函数
+富函数，可以获取到运行时上下文，还有一些生命周期
+
+
+Sink
+Flink输出到外部存储系统：
+Kafka
+Cassandra
+Kinesis Streams
+ES
+Hadoop FileSystem
+RabbitMQ
+NiFi
+Streaming API
+Bahir：为大数据工具提供连接支持
+
 
 
 ```
