@@ -105,6 +105,20 @@
       <version>1.10.1</version>
     </dependency>
 
+    <!--  flink连接redis连接器  -->
+    <dependency>
+      <groupId>org.apache.bahir</groupId>
+      <artifactId>flink-connector-redis_2.11</artifactId>
+      <version>1.0</version>
+    </dependency>
+
+    <!--   flink连接ES连接器 -->
+    <dependency>
+      <groupId>org.apache.flink</groupId>
+      <artifactId>flink-connector-elasticsearch6_2.12</artifactId>
+      <version>1.10.1</version>
+    </dependency>
+
     <!-- HBase -->
     <dependency>
       <groupId>org.apache.hbase</groupId>
