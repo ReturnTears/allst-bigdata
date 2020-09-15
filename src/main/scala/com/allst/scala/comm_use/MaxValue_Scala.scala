@@ -2,8 +2,8 @@ package com.allst.scala.comm_use
 
 /**
   * Scala在序列中获取最大值
-  * @Auther JUNN
-  * @Date 2019-07-13 下午 12:49
+  * @author JUNN
+  * @since 2019-07-13 下午 12:49
   */
 object MaxValue_Scala {
   def main(args: Array[String]): Unit = {

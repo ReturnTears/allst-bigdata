@@ -2,8 +2,8 @@ package com.allst.scala.comm_use;
 
 /**
  * java在序列中查找最大或最小值
- * @Auther JUNN
- * @Date 2019-07-13 下午 12:25
+ * @author JUNN
+ * @since 2019-07-13 下午 12:25
  */
 public class MaxValue_Java {
     public static void main(String[] args) {

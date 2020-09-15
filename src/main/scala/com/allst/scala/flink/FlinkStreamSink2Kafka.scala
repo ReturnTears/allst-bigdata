@@ -13,7 +13,8 @@ import org.apache.flink.streaming.connectors.kafka.FlinkKafkaProducer011
 object FlinkStreamSink2Kafka {
     def main(args: Array[String]): Unit = {
         val env = StreamExecutionEnvironment.getExecutionEnvironment
-        val inputPath = "E:\\IdeaProjects\\allst-scala\\src\\main\\resources"
+        val inputPath = "E:\\Projects\\IdeaProjects\\allst-scala\\src\\main\\resources"
+        //val inputPath = "E:\\IdeaProjects\\allst-scala\\src\\main\\resources"
         val inputStream = env.readTextFile(inputPath + "\\api.txt")
 
         val dataStream = inputStream.map(dt => {
