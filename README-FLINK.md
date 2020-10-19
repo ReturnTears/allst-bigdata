@@ -241,6 +241,33 @@ Bahir：为大数据工具提供连接支持
 
 ```
 
+## Flink Window API
+```text
+窗口（Window）
+一般真实的流都是无界的，怎么处理无界的数据?
+1、可以把无限的数据流进行切分，得到无限的数据集进行处理、也就是得到无界流
+2、窗口(Window)就是将无限流切割为有限流的一种方式，它会将数据分发到有限大小的桶(bucket)中进行分析
+window类型
+1、时间窗口(Time Window)
+滚动时间窗口(Tumbling Windows):
+    将数据依据固定的窗口长度对数据进行切分
+    时间对齐、窗口长度(window size)固定、没有重叠
+滑动时间窗口(Sliding Windows):
+    滑动窗口是固定窗口的更广义的一种形式，滑动窗口由固定的窗口长度(window size)和滑动间隔(window slide)组成
+    窗口长度固定，可以有重叠
+会话窗口(session windows):
+    由一系列事件组合一个指定时间长度的timeout间隙组成，也就是一段时间没有接收到新数据就会生成新的窗口
+    特点：时间无对齐
+
+窗口分配器--window()方法
+注意window()方法必须在KeyBy之后才能用
+Flink提供了更加简单的.timeWindow和.countWindow方法,用于定义时间窗口和计数窗口
+
+2、计数窗口(Count Window)
+滚动计数窗口
+滑动计数窗口
+```
+
 ##  Flink jar
 ```text
 <!-- Flink依赖（Java） -->

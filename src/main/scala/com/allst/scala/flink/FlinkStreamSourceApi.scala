@@ -34,8 +34,8 @@ object FlinkStreamSourceApi {
         println()
 
         // 从文件读取数据
-        // val streamFile = env.readTextFile("E:\\IdeaProjects\\allst-scala\\src\\main\\resources\\api.txt")
-        val streamFile = env.readTextFile("E:\\Projects\\IdeaProjects\\allst-scala\\src\\main\\resources\\api.txt")
+        val streamFile = env.readTextFile("E:\\IdeaProjects\\allst-scala\\src\\main\\resources\\api.txt")
+        //val streamFile = env.readTextFile("E:\\Projects\\IdeaProjects\\allst-scala\\src\\main\\resources\\api.txt")
         streamFile.print()
 
         // 从Kafka读取数据
